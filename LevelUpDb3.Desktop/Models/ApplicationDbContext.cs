@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LevelUpDb3.Desktop.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace LevelUpDb3.Desktop.Models
 {
-    internal class ApplicationDbContext
+    internal class ApplicationDbContext : DbContext
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Use the connection string to connect to the SQL Server database
+                optionsBuilder.UseSqlServer("Server=localhost;Database=LevelUpDb3;Trusted_Connection=True;TrustServerCertificate=True;");
+            }
+        }
+
+        public DbSet<Cliente> Clientes { get; set; }
     }
 }
