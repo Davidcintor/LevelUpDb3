@@ -23,5 +23,10 @@ namespace LevelUpDb3.Desktop.Models
 
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Producto> Productos { get; set; }
+
+        public DbSet<Venta> Ventas { get; set; }
+
+        public DbSet<VentaDetalle> VentaDetalles { get; set; }
+
     }
 }
