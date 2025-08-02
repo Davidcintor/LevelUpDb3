@@ -11,5 +11,21 @@ namespace LevelUpDb3.Desktop
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (var context = new Models.ApplicationDbContext()) {                 // Ensure the database is created
+                context.Database.EnsureCreated();
+                // Add a new client
+                var cliente = new Models.Entities.Cliente
+                {
+                    Nombre = "John Doe",
+                    Codigo = "12345"
+                };
+                context.Clientes.Add(cliente);
+                context.SaveChanges();
+                MessageBox.Show("Cliente agregado exitosamente.");
+            }
+        }
     }
 }

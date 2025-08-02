@@ -14,6 +14,14 @@ namespace LevelUpDb3.Desktop.Models
             }
         }
 
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+                configurationBuilder.Properties<string>().AreUnicode(false);
+                configurationBuilder.Properties<DateTime>().HaveColumnType("datetime");
+                configurationBuilder.Properties<Decimal>().HavePrecision(18, 2);
+        }
+
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Producto> Productos { get; set; }
     }
 }
