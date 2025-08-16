@@ -1,3 +1,4 @@
+using LevelUpDb3.Desktop.Models.Dtos;
 using LevelUpDb3.Desktop.Models.Entities;
 
 namespace LevelUpDb3.Desktop
@@ -45,7 +46,22 @@ namespace LevelUpDb3.Desktop
 
                 context.Add(productoCafe);
                 context.SaveChanges();
-            }       
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string rutaArchivo = @"C:\Users\david\source\repos\LevelUpDb3\LevelUpDb3.Desktop\ArchivosFake\ventas_fake.json";
+                List<VentaJsonDto> ventas = 
+                    new LecturaArchivoJSON().LeerArchivo(rutaArchivo);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
