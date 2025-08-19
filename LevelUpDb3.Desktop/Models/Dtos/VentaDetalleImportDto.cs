@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LevelUpDb3.Desktop.Models.Dtos
 {
-    public class VentaDetalleJsonDto
+    public class VentaDetalleImportDto
     {
         public string CodProd { get; set; }
         public string Descripcion { get; set; }

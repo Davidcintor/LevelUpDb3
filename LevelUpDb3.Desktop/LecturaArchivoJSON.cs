@@ -10,7 +10,7 @@ namespace LevelUpDb3.Desktop
 {
     internal class LecturaArchivoJSON
     {
-        public List<VentaJsonDto> LeerArchivo(string rutaArchivo)
+        public List<VentaImportDto> LeerArchivo(string rutaArchivo)
         {
             string jsonString = File.ReadAllText(rutaArchivo);
             var options = new JsonSerializerOptions
@@ -18,10 +18,10 @@ namespace LevelUpDb3.Desktop
                 PropertyNameCaseInsensitive = true
             };
 
-            List<VentaJsonDto>? ventas = 
-                JsonSerializer.Deserialize<List<VentaJsonDto>>(jsonString, options);
+            List<VentaImportDto>? ventas = 
+                JsonSerializer.Deserialize<List<VentaImportDto>>(jsonString, options);
         
-            return ventas ?? new List<VentaJsonDto>();
+            return ventas ?? new List<VentaImportDto>();
         }
     }
 }

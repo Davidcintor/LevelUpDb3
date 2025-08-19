@@ -7,6 +7,17 @@ namespace LevelUpDb3.Desktop
     {
         public Form1()
         {
+            // Replace 'VentaJsonDto' with 'VentaImportDto' to match the signature of LecturaArchivoJSON.LeerArchivo
+            try
+            {
+                string rutaArchivo = @"C:\Users\david\source\repos\LevelUpDb3\LevelUpDb3.Desktop\ArchivosFake\ventas_fake.json";
+                List<VentaImportDto> ventas =
+                    new LecturaArchivoJSON().LeerArchivo(rutaArchivo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             InitializeComponent();
         }
 
@@ -15,53 +26,54 @@ namespace LevelUpDb3.Desktop
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            using (var context = new Models.ApplicationDbContext())
-            {                 // Ensure the database is created
-                context.Database.EnsureCreated();
-                // Add a new client
-                var cliente = new Models.Entities.Cliente
-                {
-                    Nombre = "John Doe",
-                    Codigo = "12345"
-                };
-                context.Clientes.Add(cliente);
-                context.SaveChanges();
-                MessageBox.Show("Cliente agregado exitosamente.");
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            using (var context = new Models.ApplicationDbContext())
-            {
-                var productoCafe = new Producto
-                {
-                    Codigo = "Cafe",
-                    Descripcion = "Cafe soluble dolca",
-                    ValorUnitario = 50.00m,
-                    FechaCreacion = DateTime.Now,
-                };
-
-                context.Add(productoCafe);
-                context.SaveChanges();
-            }
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private async void btnImportarJson_Click(object sender, EventArgs e)
         {
             try
             {
                 string rutaArchivo = @"C:\Users\david\source\repos\LevelUpDb3\LevelUpDb3.Desktop\ArchivosFake\ventas_fake.json";
-                List<VentaJsonDto> ventas = 
-                    new LecturaArchivoJSON().LeerArchivo(rutaArchivo);
+                var ventas = new LecturaArchivoJSON().LeerArchivo(rutaArchivo);
+                await new ImportadorVentasService().ImportarVentasAsync(ventas);
+                MessageBox.Show("Los datos del archivo JSON se importaron correctamente.");
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al importar JSON: " + ex.Message);
             }
+        }
+
+        private async void btnImportarTxt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string rutaArchivo = @"C:\Users\david\source\repos\LevelUpDb3\LevelUpDb3.Desktop\ArchivosFake\ventas_fake.txt";
+                var ventas = new LecturaArchivoTXT().LeerArchivo(rutaArchivo);
+                await new ImportadorVentasService().ImportarVentasAsync(ventas);
+                MessageBox.Show("Importación de TXT completada.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al importar TXT: " + ex.Message);
+            }
+        }
+
+        private async void btnImportarXml_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string rutaArchivo = @"C:\Users\david\source\repos\LevelUpDb3\LevelUpDb3.Desktop\ArchivosFake\ventas_fake.xml";
+                var ventas = new LecturaArchivoXML().LeerArchivo(rutaArchivo);
+                await new ImportadorVentasService().ImportarVentasAsync(ventas);
+                MessageBox.Show("Importación de XML completada.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al importar XML: " + ex.Message);
+            }
+        }
+
+        private void btnImportarJson_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

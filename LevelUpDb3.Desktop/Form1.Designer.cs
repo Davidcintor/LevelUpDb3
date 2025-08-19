@@ -28,25 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            btnImportarJson = new Button();
+            btnImportarTxt = new Button();
+            btnImportarXml = new Button();
             SuspendLayout();
             // 
-            // button1
+            // btnImportarJson
             // 
-            button1.Location = new Point(495, 122);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            btnImportarJson.Location = new Point(83, 45);
+            btnImportarJson.Name = "btnImportarJson";
+            btnImportarJson.Size = new Size(133, 23);
+            btnImportarJson.TabIndex = 1;
+            btnImportarJson.Text = "Importar JSON";
+            btnImportarJson.UseVisualStyleBackColor = true;
+            btnImportarJson.Click += btnImportarJson_Click;
+            // 
+            // btnImportarTxt
+            // 
+            btnImportarTxt.Location = new Point(141, 91);
+            btnImportarTxt.Name = "btnImportarTxt";
+            btnImportarTxt.Size = new Size(109, 23);
+            btnImportarTxt.TabIndex = 2;
+            btnImportarTxt.Text = "Importar TXT";
+            btnImportarTxt.UseVisualStyleBackColor = true;
+            btnImportarTxt.Click += btnImportarTxt_Click;
+            // 
+            // btnImportarXml
+            // 
+            btnImportarXml.Location = new Point(175, 152);
+            btnImportarXml.Name = "btnImportarXml";
+            btnImportarXml.Size = new Size(99, 23);
+            btnImportarXml.TabIndex = 3;
+            btnImportarXml.Text = "Importar XML";
+            btnImportarXml.UseVisualStyleBackColor = true;
+            btnImportarXml.Click += btnImportarXml_Click;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            ClientSize = new Size(700, 338);
+            Controls.Add(btnImportarXml);
+            Controls.Add(btnImportarTxt);
+            Controls.Add(btnImportarJson);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
@@ -56,5 +81,8 @@
         #endregion
 
         private Button button1;
+        private Button btnImportarJson;
+        private Button btnImportarTxt;
+        private Button btnImportarXml;
     }
 }
